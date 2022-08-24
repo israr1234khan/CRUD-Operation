@@ -1,0 +1,103 @@
+<nav class="navbar navbar-light bg-primary">
+    <div class="container-fluid">
+      <h1 style="color:yellow;">Employee Management System</h1>
+      <div class="d-flex flex-row-reverse">
+        <button   (click)="clickAddEmp()" type="button" data-bs-toggle="modal" data-bs-target="#exampleModal" class="btn btn-success btn-lg mx-3">Add
+          Details</button>  
+      </div>
+    </div>
+</nav>
+<div class="container">
+<table class="table mt-2">
+    <thead>
+      <tr>
+        <th scope="col">Emp id</th>
+        <th scope="col"> Name</th>
+        <th scope="col">Gender</th>
+        <th scope="col"> Mobile Number</th>
+        <th scope="col">DOB</th>
+        <th scope="col">Address</th> 
+        <th scope="col">Sarary</th>
+        <th scope="col">Position</th>
+        <th scope="col">Action</th>
+        
+      </tr>
+    </thead>
+    <tbody>
+        <tr *ngFor="let data of EmpAll">
+            <td>{{data.id}}</td>
+            <td>{{data.name}}</td>
+            <td>{{data.gender}}</td>
+            <td>{{data.mobile}}</td>
+            <td>{{data.dob}}</td>
+            <td>{{data.address}}</td>
+            <td>{{data.salary}}</td>
+            <td>{{data.position}}</td>
+            <td><button (click)="onedit(data)" type="button" data-bs-toggle="modal" data-bs-target="#exampleModal"  class="btn btn-primary">Edit</button>
+                <button (click)="deleteEmps(data)" class="btn btn-danger mx-3">Delete</button></td>
+        </tr>
+    </tbody>
+  </table>
+  </div>
+<!-- Modal -->
+<div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="exampleModalLabel"> Add Employees Information:</h5>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-body">
+          <form  [formGroup]="formValue">
+            <div class="form-group mt-3">
+             
+                <label for="name">Name :</label>
+                <input type="text" class="form-control" placeholder="Enter Your Name" formControlName="name" id="name">
+              
+              </div>
+              <div class="form-group mt-3">
+              
+                <label for="gender">Gender :</label>
+                <input type="text" class="form-control" placeholder="Gender" formControlName="gender" id="gender">
+            
+            </div>
+            
+            <div class="form-group mt-3">
+              
+                <label for="mob">Mobile Number :</label>
+                <input type="number" class="form-control" formControlName="mobile" placeholder="Mobile Number" id="mob">
+            
+            </div>
+            <div class="form-group mt-3">
+            
+              <label for="date">Date of Birth :</label>
+              <input type="date" class="form-control" id="date" formControlName="dob">
+            </div>
+           
+            <div class="form-group mt-3">
+              <label for="add">Address :</label>
+                <input type="text" class="form-control" placeholder="address" formControlName="address" id="add">
+              
+            </div>
+            <div class="form-group mt-3">
+            
+              <label for="salary">Salary :</label>
+              <input type="number" class="form-control" id="salary" formControlName="salary" placeholder="salary">
+            </div>
+            <div class="form-group mt-3">
+            
+              <label for="position">Position :</label>
+              <input type="email" class="form-control" id="position" formControlName="position" placeholder="position">
+            </div>
+          </form>
+          </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Back</button>
+          <button *ngIf="showadd" type="button"  (click)="postEmpDetails()" class="btn btn-primary" data-bs-dismiss="modal">Add</button>
+          <button *ngIf="showupdate" type="button" (click)="updateEmpDetails()"  class="btn btn-primary"  data-bs-dismiss="modal">update</button>
+          
+        </div>
+      </div>
+    </div>
+  </div>
+  
